@@ -1,7 +1,7 @@
 # Moving-Average Distance vs. Long Breakout Research
 
 A reproducible, research-grade backtest of **long-only daily breakouts** conditioned on **moving-average distance** and **bullish MA structure** across six national equity baskets.
-![image](.png)
+![image](equity_curves_all_strategies.png)
 > **Not investment advice.** All results are research estimates on adjusted, local-currency Yahoo Finance data. No slippage, taxes, FX conversion, or market impact is modelled. Transaction costs default to zero.
 
 ---
