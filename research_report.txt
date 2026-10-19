@@ -1,0 +1,35 @@
+MA STRUCTURE / PRICE-SURFING / LPS-PROXY BREAKOUT RESEARCH
+===========================================================
+Signal date range: 2021-01-01 to 2026-10-17 (end date exclusive)
+Price history warm-up starts: 2020-01-02; data downloaded through: 2026-11-21
+Breakout: signal close > highest HIGH of prior 20 completed sessions
+MAs: simple moving averages of (10, 21, 50, 200); bullish order is SMA10 > SMA21 > SMA50 > SMA200
+Stable stack: bullish order on signal day and on >= 8 of the previous 10 sessions
+Surfing: previous 10 sessions; close within +/-3.0% of at least one of SMA10/SMA21/SMA50 and not >3.0% below SMA50 on >= 6 sessions
+LPS proxy: lowest low in the previous 10 sessions is within +/-3.0% of SMA50 on the day of that low
+Entry: next session open; exit: close of holding session 10; no stop-loss or leverage
+Relative-strength filter: OFF; transaction costs: 0.00 bps per side
+Each strategy is simulated separately; same-ticker positions do not overlap within a strategy.
+Equity curves use equal-weight average returns across that strategy's currently open positions; this is illustrative, not a capped-capital broker simulation.
+Returns are local-currency price returns; no FX conversion, slippage, taxes, or market impact. Yahoo adjusted data are subject to vendor revisions.
+LPS is a mechanical proxy only. The script does not verify a preceding Wyckoff SOS/structure or volume/effort-result confirmation.
+Comparisons are descriptive, not proof of statistical significance. Cohorts can share dates/tickers and trades are not independent.
+
+PERFORMANCE SUMMARY
+           Strategy  Trades  Win_Rate_Pct  Avg_Trade_Return_Pct  Median_Trade_Return_Pct  Avg_Win_Pct  Avg_Loss_Pct  Profit_Factor  Final_Equity  Portfolio_Total_Return_Pct  CAGR_Pct  Max_Drawdown_Pct  Sharpe_252  Avg_Active_Positions
+      All_Breakouts    2679     54.908548              0.651317                 0.520830     4.683131     -4.258283       1.339206    189.073966                   89.073966 11.651214        -31.732955    0.786477             17.777040
+      Bullish_Stack     906     53.973510              0.646206                 0.382610     4.464461     -3.831316       1.366450    221.666708                  121.666708 14.766167        -24.043289    0.833649              6.011944
+Stacked_and_Surfing     752     54.521277              0.494990                 0.427525     3.870457     -3.551622       1.306451    172.911261                   72.911261  9.938225        -25.417000    0.636535              4.990046
+          LPS_Proxy    1212     56.353135              0.645185                 0.670921     4.251591     -4.018697       1.368526    255.635597                  155.635597 17.632565        -24.338206    1.086072              8.042468
+  Stacked_LPS_Proxy     353     55.240793              0.580015                 0.420972     4.126831     -3.797383       1.341250    192.518917                   92.518917 12.000570        -19.567752    0.731050              2.342402
+
+STRATEGIES VS BASELINE
+           Strategy  Baseline_Trades  Strategy_Trades  Avg_Trade_Return_Pct  Baseline_Avg_Trade_Return_Pct  Avg_Return_Difference_Pct_Points  Win_Rate_Pct  Baseline_Win_Rate_Pct  Win_Rate_Difference_Pct_Points  Profit_Factor  Baseline_Profit_Factor  Portfolio_Total_Return_Pct  Baseline_Portfolio_Total_Return_Pct  Portfolio_Return_Difference_Pct_Points  Max_Drawdown_Pct  Baseline_Max_Drawdown_Pct
+      Bullish_Stack             2679              906              0.646206                       0.651317                         -0.005111     53.973510              54.908548                       -0.935038       1.366450                1.339206                  121.666708                            89.073966                               32.592742        -24.043289                 -31.732955
+Stacked_and_Surfing             2679              752              0.494990                       0.651317                         -0.156328     54.521277              54.908548                       -0.387271       1.306451                1.339206                   72.911261                            89.073966                              -16.162705        -25.417000                 -31.732955
+          LPS_Proxy             2679             1212              0.645185                       0.651317                         -0.006132     56.353135              54.908548                        1.444587       1.368526                1.339206                  155.635597                            89.073966                               66.561631        -24.338206                 -31.732955
+  Stacked_LPS_Proxy             2679              353              0.580015                       0.651317                         -0.071302     55.240793              54.908548                        0.332245       1.341250                1.339206                   92.518917                            89.073966                                3.444951        -19.567752                 -31.732955
+
+Symbols with downloaded/cached data: 66/66
+Eligible breakout events: 7265; selected trades across all strategies (duplicates across strategies are intentional): 5902
+Outputs: D:\FUN projects\AI\Strategies\general\ma_structure_research_output
