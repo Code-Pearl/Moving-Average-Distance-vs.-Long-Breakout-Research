@@ -1,5 +1,25 @@
 # Moving-Average Distance vs. Long Breakout Research
 
+
+
+This is a breakout research study across 100 assets (US, Canada, Germany, Japan, Korea, France, ETFs, FX, crypto, futures) with ~4,900 fresh breakouts. The key question: does "tight structure" (contracting range) or "location" (near/far from the 50-SMA) predict better breakout returns?
+
+Main finding: neither structure nor location separates returns after controlling for volatility, momentum, and other factors. Tight vs. loose range: p=0.675. Near vs. far from MA: p=0.543. No Bonferroni-significant terms.
+
+The apparent effects are composition artifacts — tight structure correlates with lower risk (median stop distance ~5.6% vs ~8.3%), and far-from-MA breakouts benefit from momentum/regime effects, not the labels themselves.
+
+Dose-response is mixed: vol_dryup (p=0.019) and lps_abs (p=0.036) show some signal; dist50_abs is marginal (p=0.067). Range percentile and Bollinger bandwidth show nothing.
+
+Stability is poor: TIGHT beats loose in only 6/10 groups; NEAR beats FAR in just 1/10. Threshold sensitivity shows unstable signs across cut-offs.
+
+Caveats: survivorship-biased universe, clustered breakouts, short sample/one regime, 10-day horizon only, mechanical proxies for discretionary patterns.
+
+Bottom line: Don't trade tight-range or near-MA breakouts for edge — the labels don't survive controls. If anything, focus on volume dry-up and setup-low distance as weak secondary signals, but treat with skepticism.
+
+
+
+
+
 A reproducible, research-grade backtest of **long-only daily breakouts** conditioned on **moving-average distance** and **bullish MA structure** across six national equity baskets.
 ![image](equity_curves_all_strategies.png)
 > **Not investment advice.** All results are research estimates on adjusted, local-currency Yahoo Finance data. No slippage, taxes, FX conversion, or market impact is modelled. Transaction costs default to zero.
