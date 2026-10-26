@@ -1,0 +1,134 @@
+==============================================================================================================
+SHORT-SWING TEST: 1 ADR stop, thirds at +1 ADR / +2 ADR / close of day 5, ADR 2%-6% only
+==============================================================================================================
+R = profit in units of the risk (1 ADR). Positive = makes money after the stop, before fees.
+ZERO-EDGE YARDSTICK: a pure random walk entered on random days gives +0.056 R, 46% win, 48% reach +1 ADR.
+  Anything near that has NO edge; real edge must clearly beat the BASE_ALL / PLAIN groups below, not zero.
+BASE_TREND = no pattern, closed above MA21 and MA50 for 15 days, MA50>MA200, MA200 rising (your 'drifting' stock).
+BASE_ALL   = no pattern, no trend filter: any day with ADR 2-6%.
+
+            trades  mean R  median R  win % (R>0)  +1 ADR before stop %  5-day ret / ADR  median ADR %
+group                                                                                                 
+VCP             42   0.337     0.503       57.143                59.524            0.448         2.360
+LPS            275   0.176    -0.333       45.818                50.182            0.042         2.527
+STAIR         2664   0.088    -0.333       45.946                46.809            0.065         2.487
+DRIFT         3367   0.124    -0.300       47.282                49.064            0.114         2.490
+PLAIN         3382   0.172    -0.122       48.729                50.355            0.145         2.674
+BASE_TREND    4560   0.118    -0.333       46.557                48.750            0.155         2.570
+BASE_ALL     42438   0.120    -0.333       46.593                48.902            0.174         2.685
+
+EACH PATTERN vs BASE_TREND (mean R difference):
+  VCP       +0.337 R (n=42) vs BASE_TREND +0.118 R (n=4560) -> diff +0.218, 95% CI [-0.081, +0.535]  => no clear difference
+  LPS       +0.176 R (n=275) vs BASE_TREND +0.118 R (n=4560) -> diff +0.057, 95% CI [-0.101, +0.237]  => no clear difference
+  STAIR     +0.088 R (n=2664) vs BASE_TREND +0.118 R (n=4560) -> diff -0.031, 95% CI [-0.079, +0.013]  => no clear difference
+  DRIFT     +0.124 R (n=3367) vs BASE_TREND +0.118 R (n=4560) -> diff +0.006, 95% CI [-0.050, +0.059]  => no clear difference
+  PLAIN     +0.172 R (n=3382) vs BASE_TREND +0.118 R (n=4560) -> diff +0.054, 95% CI [+0.003, +0.104]  => PLAIN CLEARLY better
+  4 POOLED  +0.112 R (n=6348) vs BASE_TREND +0.118 R (n=4560) -> diff -0.006, 95% CI [-0.062, +0.044]  => no clear difference
+
+EACH PATTERN vs BASE_ALL (random days, ADR 2-6%: the zero-edge yardstick, behaves like the random walk):
+  VCP       +0.337 R (n=42) vs BASE_ALL +0.120 R (n=42438) -> diff +0.217, 95% CI [-0.122, +0.560]  => no clear difference
+  LPS       +0.176 R (n=275) vs BASE_ALL +0.120 R (n=42438) -> diff +0.056, 95% CI [-0.106, +0.218]  => no clear difference
+  STAIR     +0.088 R (n=2664) vs BASE_ALL +0.120 R (n=42438) -> diff -0.032, 95% CI [-0.102, +0.037]  => no clear difference
+  DRIFT     +0.124 R (n=3367) vs BASE_ALL +0.120 R (n=42438) -> diff +0.004, 95% CI [-0.069, +0.078]  => no clear difference
+  PLAIN     +0.172 R (n=3382) vs BASE_ALL +0.120 R (n=42438) -> diff +0.053, 95% CI [-0.012, +0.124]  => no clear difference
+  4 POOLED  +0.112 R (n=6348) vs BASE_ALL +0.120 R (n=42438) -> diff -0.007, 95% CI [-0.078, +0.062]  => no clear difference
+
+Does 'drifting above the MAs' itself help?  BASE_TREND vs BASE_ALL:
+  BASE_TREND +0.118 R (n=4560) vs BASE_ALL +0.120 R (n=42438) -> diff -0.001, 95% CI [-0.065, +0.059]  => no clear difference
+
+VCP + LPS ONLY (the structured patterns) vs the baseline and vs PLAIN (PLAIN has the same pivot-break entry = like-for-like):
+  VCP+LPS   +0.197 R (n=317) vs BASE_TREND +0.118 R (n=4560) -> diff +0.079, 95% CI [-0.083, +0.245]  => no clear difference
+  VCP+LPS   +0.197 R (n=317) vs PLAIN +0.172 R (n=3382) -> diff +0.025, 95% CI [-0.116, +0.174]  => no clear difference
+
+--------------------------------------------------------------------------------------------------------------
+CONSISTENCY CHECK: mean R and number of trades by asset class, region and year (a real edge should show up in most rows)
+--------------------------------------------------------------------------------------------------------------
+
+group      BASE_ALL  BASE_TREND  PLAIN  BASE_ALL n  BASE_TREND n  PLAIN n
+cls                                                                      
+commodity      0.08        0.13   0.12        1872           161       97
+crypto         0.14        0.31   0.50        1190           114       88
+equity         0.12        0.11   0.16       38100          4256     3156
+etf            0.16        0.08   0.34        1276            29       41
+
+group      BASE_ALL  BASE_TREND  PLAIN  BASE_ALL n  BASE_TREND n  PLAIN n
+region                                                                   
+Asia           0.08        0.20   0.39        3467           374      284
+Australia      0.10       -0.23  -0.24         567            27       27
+Canada         0.16        0.32   0.16        1441           183      165
+Europe         0.12        0.08   0.07        6777           632      497
+Global         0.12        0.19   0.31        4338           304      226
+India          0.11        0.13   0.16        5022           696      426
+Japan          0.13        0.07   0.13        3568           380      261
+LatAm          0.08        0.15   0.21        2934           311      235
+US             0.14        0.08   0.15       14324          1653     1261
+
+group  BASE_ALL  BASE_TREND  PLAIN  BASE_ALL n  BASE_TREND n  PLAIN n
+year                                                                 
+2009       0.24        0.09   0.14        2914           265      313
+2010       0.15        0.11   0.17        2285           349      197
+2011       0.02        0.01  -0.14        2488           159      108
+2012       0.12        0.15  -0.05        1902           144      118
+2013       0.17        0.19   0.27        1665           253      177
+2014       0.14        0.01   0.17        1606           241      143
+2015       0.05       -0.01   0.08        2347           177      135
+2016       0.17        0.19   0.21        2142           197      188
+2017       0.19        0.24   0.38        1200           230      104
+2018       0.02        0.10   0.15        2268           214      132
+2019       0.18        0.05   0.14        2066           175      150
+2020       0.18        0.16   0.37        3031           429      339
+2021       0.08       -0.06   0.07        2680           425      283
+2022       0.02        0.04   0.13        3412           138      128
+2023       0.16        0.18   0.15        2433           253      215
+2024       0.13        0.19   0.18        2463           375      240
+2025       0.16        0.17   0.17        2797           287      214
+2026       0.06        0.27   0.23        2739           249      198
+
+BASE_TREND, 8 weakest assets (>=20 trades):
+        size  mean
+asset             
+AZN.L     34 -0.29
+LT.NS     54 -0.27
+6758.T    54 -0.26
+NOW       78 -0.19
+SIE.DE    25 -0.16
+UNH       47 -0.13
+UBER      29 -0.12
+CRM       78 -0.12
+BASE_TREND, 5 best assets:
+         size  mean
+asset              
+GE         49  0.40
+SLV        48  0.41
+BTC-USD    86  0.43
+1810.HK    45  0.56
+BSE.NS     55  0.67
+
+--------------------------------------------------------------------------------------------------------------
+MARKET REGIME (SPY above 50d MA and 50d above 200d = bull)
+--------------------------------------------------------------------------------------------------------------
+  VCP       bull +0.260 R (n=36) | not bull +0.799 R (n=6)
+  LPS       bull +0.248 R (n=209) | not bull -0.053 R (n=66)
+  STAIR     bull +0.071 R (n=2058) | not bull +0.144 R (n=606)
+  DRIFT     bull +0.116 R (n=2588) | not bull +0.150 R (n=779)
+  PLAIN     bull +0.196 R (n=2544) | not bull +0.098 R (n=838)
+  BASE_TREND bull +0.094 R (n=3511) | not bull +0.201 R (n=1049)
+  BASE_ALL  bull +0.086 R (n=23513) | not bull +0.161 R (n=18925)
+  pooled patterns vs baseline, inside each regime:
+   [bull]4 POOLED  +0.104 R (n=4891) vs BASE_TREND +0.094 R (n=3511) -> diff +0.010, 95% CI [-0.046, +0.067]  => no clear difference
+   [not bull]4 POOLED  +0.141 R (n=1457) vs BASE_TREND +0.201 R (n=1049) -> diff -0.060, 95% CI [-0.149, +0.034]  => no clear difference
+
+--------------------------------------------------------------------------------------------------------------
+RELATIVE STRENGTH vs SPY, 63-day outperformance: bottom third <= -1.5 pts, top third >= +13.1 pts
+--------------------------------------------------------------------------------------------------------------
+  VCP       top third +0.534 R (n=16) | bottom third -0.121 R (n=5)
+  LPS       top third +0.178 R (n=156) | bottom third +0.166 R (n=22)
+  STAIR     top third +0.107 R (n=1762) | bottom third +0.573 R (n=32)
+  DRIFT     top third +0.101 R (n=2110) | bottom third +0.207 R (n=139)
+  PLAIN     top third +0.178 R (n=1833) | bottom third +0.142 R (n=222)
+  BASE_TREND top third +0.098 R (n=2919) | bottom third +0.164 R (n=208)
+  BASE_ALL  top third +0.125 R (n=10114) | bottom third +0.104 R (n=18281)
+  top RS third, pooled patterns vs baseline: 4 POOLED  +0.108 R (n=4044) vs BASE_TREND +0.098 R (n=2919) -> diff +0.010, 95% CI [-0.042, +0.065]  => no clear difference
+
+How to read: a pattern only has an edge if it beats the BASELINE with a confidence interval that excludes 0, and repeats across regimes.
+Survivorship bias (today's large, liquid assets) flatters every group equally, so differences are more reliable than the absolute R.
