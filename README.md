@@ -617,3 +617,67 @@ The harness is deliberately mechanical and no-lookahead: breakout = close above 
 
 The harness is intentionally small enough to be read end-to-end, so any of these extensions can be made without reverse-engineering a framework.
 ```
+
+*UPDATE*
+
+![image](/v4/RESULT_SWING.png)
+# VCP / LPS short-swing test: results and conclusions
+ · 26 October 2026
+
+## Summary
+
+The latest uploads are the same run as the previous ones, with no new data. The swing results differ only in two header lines that were reworded, and the backtest results and saved setups are byte-identical to the earlier uploads. The conclusions from the previous analysis stand.
+
+For these definitions and this data, none of the patterns tested (VCP, LPS, STAIR, DRIFT) gives a reliable short-swing edge over a drifting stock or a random day.
+
+## What the results say
+
+The short swing uses a stop 1 ADR below entry, sells thirds at +1 ADR and +2 ADR, and exits the last third at the close of day 5. Every group ends up with about the same result.
+
+| Group | Mean R | Trades |
+| --- | --- | --- |
+| VCP | +0.34 | 42 |
+| LPS | +0.18 | 275 |
+| STAIR | +0.09 | 2,664 |
+| DRIFT | +0.12 | 3,367 |
+| PLAIN (plain breakout) | +0.17 | 3,382 |
+| Drifting-stock baseline (BASE\_TREND) | +0.12 | 4,560 |
+| Random days (BASE\_ALL) | +0.12 | 42,438 |
+
+Key comparisons:
+
+- **Pattern vs random days:** every difference has a 95% interval that includes zero.
+- **Drifting above the moving averages vs random days:** −0.001 R, so trend alone adds nothing.
+- **Structured patterns vs plain breakouts:** VCP+LPS is +0.025 R vs PLAIN, with an interval of \[−0.116, +0.174\]. PLAIN uses the same pivot-break entry, so this is the like-for-like comparison.
+- **The only "clear" line:** PLAIN vs the drifting baseline (+0.054 R, interval \[+0.003, +0.104\]). It does not hold against random days, and PLAIN beat random days in only 12 of 18 years, which is not conclusive. It is most likely noise.
+
+## Consistency
+
+Results are mixed across asset classes, regions and years, and there is no row where the patterns consistently win. A few unusual cells (crypto PLAIN +0.50 R, LPS +0.25 R in bull markets vs −0.05 R otherwise) rest on small groups and sit among dozens of comparisons. Treat them as ideas to test, not findings.
+
+## Statistical power
+
+- **STAIR, DRIFT and PLAIN** have enough trades to rule out an edge larger than roughly 0.07 R over random days.
+- **VCP+LPS** has a margin of about ±0.15 R. To detect a +0.1 R difference you would need roughly 8–9 times more VCP+LPS trades (about 2,700, versus 317 now).
+- **VCP alone** is far less certain, because 42 trades is too few for any conclusion.
+
+The open question is therefore a lack of VCP and LPS trades, not a lack of effort. A universe 8–10 times larger (a few hundred liquid stocks over the same years) would settle it either way.
+
+## Bottom line
+
+For these definitions and this data, none of these patterns gives a reliable short-swing edge over a drifting stock or a random day. Survivorship in today's large, liquid assets lifts all groups equally, so the absolute R of about +0.12 for random days overstates what would be earned in practice.
+
+The test did not cover:
+
+- discretionary selection from a screen
+- sector or group strength
+- other exit rules
+- entries inside a Darvas box
+- earnings or news context
+
+## Next step
+
+If you want to push further on VCP and LPS, the scripts can be changed to read a `tickers.txt` file with a few hundred more tickers, so these patterns get enough trades to test properly.
+
+
+
