@@ -1,0 +1,230 @@
+==============================================================================================================
+DO THESE SETUPS WORK?  (volatility-adjusted = 20-bar return / the stock's daily ATR%)
+==============================================================================================================
+Location cut points (ON = closest third to the MA21, AWAY = most extended third; box low vs MA21 in ATRs):
+   VCP    ON <= -1.06 | MID | AWAY > -0.67
+   LPS    ON <= -0.94 | MID | AWAY > -0.36
+   STAIR  ON <= -0.48 | MID | AWAY > +0.28
+   DRIFT  ON <= -0.14 | MID | AWAY > +0.53
+   PLAIN  ON <= -0.89 | MID | AWAY > -0.20
+
+Setups found: VCP 222 (160 broke out), LPS 1723 (707 broke out), STAIR 12278 (8438 broke out), DRIFT 7594 (6651 broke out), PLAIN 11173 (8549 broke out)
+
+--------------------------------------------------------------------------------------------------------------
+VCP: 222 setups, 160 broke out
+--------------------------------------------------------------------------------------------------------------
+
+[RS rank vs all assets]
+          setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %   n
+rs_b                                                                                                                           
+RS<50         28         67.9             3.4          1.6              4.3     73.7             10.5                  31.6  19
+RS 50-80     105         70.5             0.1          0.0              4.8     50.7             11.0                  34.2  73
+RS 80-90      54         72.2             2.1          1.3              4.9     68.4             26.3                  41.0  38
+RS>=90        35         80.0             1.3          0.5              6.0     53.6             25.0                  39.3  28
+  raw %     : RS>=90 +1.26% (n=28) vs RS<90 +1.36% (n=130) -> diff -0.10, 95% CI [-4.32, +4.56]  => no clear difference
+  vol-adj.  : RS>=90 +0.53 ATR-units (n=28) vs RS<90 +0.75 ATR-units (n=130) -> diff -0.23, 95% CI [-2.24, +2.26]  => no clear difference
+
+[Breakout-day volume (entry at that day's close)]
+          setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %   n
+rv_b                                                                                    
+<1.0x         86        100.0            -0.2         -0.1              4.0     49.4  85
+1.0-1.2x      22        100.0             3.4          2.2              6.5     72.7  22
+>=1.2x        52        100.0             1.6          0.9              6.5     66.7  51
+  raw %     : vol>=1.2x +1.57% (n=51) vs vol<1.2x +0.95% (n=107) -> diff +0.62, 95% CI [-1.97, +3.11]  => no clear difference
+  vol-adj.  : vol>=1.2x +0.69 ATR-units (n=51) vs vol<1.2x +0.59 ATR-units (n=107) -> diff +0.10, 95% CI [-1.04, +1.64]  => no clear difference
+
+[Base location vs MA21 (thirds)]
+      setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %   n
+loc                                                                                                                        
+ON        74         77.0             0.8          0.4              5.4     57.1             16.1                  35.7  56
+MID       74         71.6             1.7          0.7              4.6     55.8             17.3                  37.7  52
+AWAY      74         67.6             1.4          0.8              4.9     62.0             18.0                  36.0  50
+  raw %     : ON +0.84% (n=56) vs AWAY +1.38% (n=50) -> diff -0.55, 95% CI [-3.24, +2.66]  => no clear difference
+  vol-adj.  : ON +0.37 ATR-units (n=56) vs AWAY +0.75 ATR-units (n=50) -> diff -0.38, 95% CI [-1.73, +1.90]  => no clear difference
+
+[Near the 52-week high]
+               setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %    n
+52w                                                                                                                                  
+near 52w high     216         72.7             1.4          0.7              5.4     57.4             16.8                  36.5  155
+not near            6         50.0             1.3          0.8              3.9    100.0             33.3                  33.3    3
+  raw %     : too few events (need 15+ in each): near 52w high n=155, not near n=3
+  vol-adj.  : too few events (need 15+ in each): near 52w high n=155, not near n=3
+
+--------------------------------------------------------------------------------------------------------------
+LPS (thrust+pullback): 1723 setups, 707 broke out
+--------------------------------------------------------------------------------------------------------------
+
+[RS rank vs all assets]
+          setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %    n
+rs_b                                                                                                                            
+RS<50        390         34.6             1.4          1.2              5.5     61.5             11.1                  34.1  135
+RS 50-80     715         42.4             1.3          0.6              5.0     59.6             10.0                  33.8  302
+RS 80-90     318         43.4             1.7          0.9              5.3     58.0             19.7                  39.9  138
+RS>=90       298         44.0             3.3          1.5              6.9     62.3             35.7                  46.6  130
+  raw %     : RS>=90 +3.35% (n=130) vs RS<90 +1.40% (n=575) -> diff +1.95, 95% CI [-0.14, +3.65]  => no clear difference
+  vol-adj.  : RS>=90 +1.52 ATR-units (n=130) vs RS<90 +0.75 ATR-units (n=575) -> diff +0.76, 95% CI [-0.34, +1.47]  => no clear difference
+
+[Breakout-day volume (entry at that day's close)]
+          setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %    n
+rv_b                                                                                     
+<1.0x        301        100.0             0.9          0.5              5.2     56.8  301
+1.0-1.2x     136        100.0             2.0          1.2              6.4     59.3  135
+>=1.2x       270        100.0             2.0          1.2              5.5     64.3  269
+  raw %     : vol>=1.2x +1.62% (n=269) vs vol<1.2x +1.13% (n=436) -> diff +0.49, 95% CI [-0.92, +1.55]  => no clear difference
+  vol-adj.  : vol>=1.2x +0.98 ATR-units (n=269) vs vol<1.2x +0.76 ATR-units (n=436) -> diff +0.22, 95% CI [-0.57, +0.89]  => no clear difference
+
+[Base location vs MA21 (thirds)]
+      setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %    n
+loc                                                                                                                         
+ON       575         43.1             2.0          1.0              5.6     59.7             17.3                  35.5  248
+MID      573         41.9             1.0          0.6              5.2     58.8             14.3                  38.1  238
+AWAY     575         38.1             1.7          1.0              5.8     62.1             18.9                  38.8  219
+  raw %     : ON +1.98% (n=248) vs AWAY +1.70% (n=219) -> diff +0.27, 95% CI [-1.21, +1.49]  => no clear difference
+  vol-adj.  : ON +1.01 ATR-units (n=248) vs AWAY +0.98 ATR-units (n=219) -> diff +0.03, 95% CI [-1.00, +0.96]  => no clear difference
+
+[Near the 52-week high]
+               setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %    n
+52w                                                                                                                                  
+near 52w high    1462         41.5             1.4          0.8              5.5     59.2             15.0                  36.1  606
+not near          261         38.3             4.5          2.0              5.7     65.7             27.8                  45.5   99
+  raw %     : near 52w high +1.42% (n=606) vs not near +4.47% (n=99) -> diff -3.05, 95% CI [-5.23, +0.18]  => no clear difference
+  vol-adj.  : near 52w high +0.78 ATR-units (n=606) vs not near +1.95 ATR-units (n=99) -> diff -1.18, 95% CI [-1.87, +0.42]  => no clear difference
+
+--------------------------------------------------------------------------------------------------------------
+STAIR (box above old range): 12278 setups, 8438 broke out
+--------------------------------------------------------------------------------------------------------------
+
+[RS rank vs all assets]
+          setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %     n
+rs_b                                                                                                                             
+RS<50       1926         66.7             1.1          0.9              5.0     61.8              7.1                  37.4  1285
+RS 50-80    5462         68.6             0.9          0.6              4.9     57.4              9.2                  32.7  3746
+RS 80-90    2491         69.5             1.0          0.6              4.7     57.2             13.8                  32.4  1720
+RS>=90      2392         69.9             1.6          0.7              5.1     57.0             25.1                  34.5  1662
+  raw %     : RS>=90 +1.60% (n=1662) vs RS<90 +0.98% (n=6751) -> diff +0.62, 95% CI [-0.25, +1.42]  => no clear difference
+  vol-adj.  : RS>=90 +0.65 ATR-units (n=1662) vs RS<90 +0.63 ATR-units (n=6751) -> diff +0.02, 95% CI [-0.34, +0.33]  => no clear difference
+
+[Breakout-day volume (entry at that day's close)]
+          setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %     n
+rv_b                                                                                      
+<1.0x       4598        100.0             0.9          0.6              4.8     57.2  4585
+1.0-1.2x    1513        100.0             0.9          0.6              5.0     57.8  1509
+>=1.2x      2327        100.0             1.5          0.8              5.0     59.6  2322
+  raw %     : vol>=1.2x +1.08% (n=2322) vs vol<1.2x +1.02% (n=6094) -> diff +0.06, 95% CI [-0.32, +0.48]  => no clear difference
+  vol-adj.  : vol>=1.2x +0.61 ATR-units (n=2322) vs vol<1.2x +0.62 ATR-units (n=6094) -> diff -0.01, 95% CI [-0.27, +0.22]  => no clear difference
+
+[Base location vs MA21 (thirds)]
+      setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %     n
+loc                                                                                                                          
+ON      4093         68.3             0.9          0.5              4.6     56.7             11.5                  31.1  2791
+MID     4092         67.9             1.1          0.6              4.9     57.7             13.2                  34.0  2766
+AWAY    4093         70.0             1.3          0.7              5.2     59.4             14.1                  35.9  2859
+  raw %     : ON +0.87% (n=2791) vs AWAY +1.26% (n=2859) -> diff -0.39, 95% CI [-0.78, -0.04]  => AWAY CLEARLY better
+  vol-adj.  : ON +0.52 ATR-units (n=2791) vs AWAY +0.72 ATR-units (n=2859) -> diff -0.20, 95% CI [-0.41, -0.02]  => AWAY CLEARLY better
+
+[Near the 52-week high]
+               setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %     n
+52w                                                                                                                                   
+near 52w high   11634         69.2             1.1          0.6              4.9     58.0             12.4                  33.5  8029
+not near          644         61.0             1.3          0.6              4.5     56.3             24.5                  37.7   387
+  raw %     : near 52w high +1.07% (n=8029) vs not near +1.31% (n=387) -> diff -0.25, 95% CI [-1.41, +1.05]  => no clear difference
+  vol-adj.  : near 52w high +0.64 ATR-units (n=8029) vs not near +0.58 ATR-units (n=387) -> diff +0.06, 95% CI [-0.23, +0.63]  => no clear difference
+
+--------------------------------------------------------------------------------------------------------------
+DRIFT (continuation): 7594 setups, 6651 broke out
+--------------------------------------------------------------------------------------------------------------
+
+[RS rank vs all assets]
+          setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %     n
+rs_b                                                                                                                             
+RS<50        618         86.1             1.2          0.7              4.9     57.3             13.7                  34.2   532
+RS 50-80    2864         87.5             1.1          0.6              4.9     57.8             14.4                  34.2  2500
+RS 80-90    1904         87.2             1.3          0.6              4.8     56.5             18.4                  32.5  1653
+RS>=90      2203         88.5             1.7          0.6              5.3     57.2             29.4                  36.0  1943
+  raw %     : RS>=90 +1.66% (n=1943) vs RS<90 +1.14% (n=4685) -> diff +0.53, 95% CI [-0.37, +1.60]  => no clear difference
+  vol-adj.  : RS>=90 +0.63 ATR-units (n=1943) vs RS<90 +0.57 ATR-units (n=4685) -> diff +0.06, 95% CI [-0.27, +0.46]  => no clear difference
+
+[Breakout-day volume (entry at that day's close)]
+          setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %     n
+rv_b                                                                                      
+<1.0x       3225        100.0             1.0          0.5              4.9     56.8  3216
+1.0-1.2x    1221        100.0             1.4          0.6              4.9     57.6  1215
+>=1.2x      2205        100.0             1.6          0.7              5.3     57.8  2201
+  raw %     : vol>=1.2x +1.09% (n=2201) vs vol<1.2x +1.21% (n=4431) -> diff -0.12, 95% CI [-0.60, +0.39]  => no clear difference
+  vol-adj.  : vol>=1.2x +0.50 ATR-units (n=2201) vs vol<1.2x +0.58 ATR-units (n=4431) -> diff -0.08, 95% CI [-0.33, +0.14]  => no clear difference
+
+[Base location vs MA21 (thirds)]
+      setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %     n
+loc                                                                                                                          
+ON      2531         88.5             1.1          0.5              4.9     56.9             19.1                  31.7  2231
+MID     2531         87.1             1.3          0.6              4.8     56.9             21.2                  34.1  2197
+AWAY    2532         87.2             1.4          0.7              5.2     58.0             18.9                  37.1  2204
+  raw %     : ON +1.13% (n=2231) vs AWAY +1.40% (n=2204) -> diff -0.27, 95% CI [-0.71, +0.32]  => no clear difference
+  vol-adj.  : ON +0.53 ATR-units (n=2231) vs AWAY +0.67 ATR-units (n=2204) -> diff -0.13, 95% CI [-0.37, +0.09]  => no clear difference
+
+[Near the 52-week high]
+               setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %     n
+52w                                                                                                                                   
+near 52w high    7157         87.8             1.2          0.6              5.0     57.1             19.2                  34.2  6270
+not near          437         83.3             1.7          0.7              5.0     60.2             29.3                  35.4   362
+  raw %     : near 52w high +1.21% (n=6270) vs not near +1.73% (n=362) -> diff -0.51, 95% CI [-2.01, +0.57]  => no clear difference
+  vol-adj.  : near 52w high +0.57 ATR-units (n=6270) vs not near +0.67 ATR-units (n=362) -> diff -0.09, 95% CI [-0.57, +0.34]  => no clear difference
+
+--------------------------------------------------------------------------------------------------------------
+PLAIN (control): 11173 setups, 8549 broke out
+--------------------------------------------------------------------------------------------------------------
+
+[RS rank vs all assets]
+          setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %     n
+rs_b                                                                                                                             
+RS<50       2380         72.9             1.3          0.9              5.3     60.1              9.2                  36.3  1734
+RS 50-80    4625         76.2             0.9          0.5              4.9     57.1             11.7                  33.3  3509
+RS 80-90    1882         76.7             1.4          0.6              4.5     57.7             16.0                  31.0  1434
+RS>=90      2283         80.7             2.3          0.7              5.1     59.4             29.4                  34.6  1836
+  raw %     : RS>=90 +2.30% (n=1836) vs RS<90 +1.10% (n=6677) -> diff +1.21, 95% CI [+0.31, +2.01]  => RS>=90 CLEARLY better
+  vol-adj.  : RS>=90 +0.72 ATR-units (n=1836) vs RS<90 +0.64 ATR-units (n=6677) -> diff +0.08, 95% CI [-0.22, +0.38]  => no clear difference
+
+[Breakout-day volume (entry at that day's close)]
+          setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %     n
+rv_b                                                                                      
+<1.0x       4035        100.0             0.9          0.5              4.6     56.7  4012
+1.0-1.2x    1501        100.0             1.4          0.7              5.0     59.2  1496
+>=1.2x      3013        100.0             1.7          0.8              5.4     60.0  3008
+  raw %     : vol>=1.2x +1.35% (n=3008) vs vol<1.2x +1.10% (n=5508) -> diff +0.25, 95% CI [-0.16, +0.63]  => no clear difference
+  vol-adj.  : vol>=1.2x +0.63 ATR-units (n=3008) vs vol<1.2x +0.62 ATR-units (n=5508) -> diff +0.01, 95% CI [-0.19, +0.21]  => no clear difference
+
+[Base location vs MA21 (thirds)]
+      setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %     n
+loc                                                                                                                          
+ON      3724         75.6             1.4          0.7              4.9     60.0             15.6                  34.5  2805
+MID     3724         75.5             1.2          0.6              5.1     57.1             14.9                  33.2  2802
+AWAY    3725         78.4             1.2          0.6              4.9     57.8             16.6                  33.8  2909
+  raw %     : ON +1.42% (n=2805) vs AWAY +1.16% (n=2909) -> diff +0.26, 95% CI [-0.03, +0.55]  => no clear difference
+  vol-adj.  : ON +0.74 ATR-units (n=2805) vs AWAY +0.61 ATR-units (n=2909) -> diff +0.13, 95% CI [-0.03, +0.29]  => no clear difference
+
+[Near the 52-week high]
+               setups  broke out %  median ret20 %  ret20 / ATR  p90 ret20 / ATR  win20 %  +20 before -8 %  +5ATR before -2ATR %     n
+52w                                                                                                                                   
+near 52w high   10290         77.0             1.2          0.7              5.0     58.3             14.8                  33.6  7896
+not near          883         71.0             1.7          0.6              5.0     58.4             27.8                  36.9   620
+  raw %     : near 52w high +1.24% (n=7896) vs not near +1.67% (n=620) -> diff -0.43, 95% CI [-1.22, +0.59]  => no clear difference
+  vol-adj.  : near 52w high +0.67 ATR-units (n=7896) vs not near +0.65 ATR-units (n=620) -> diff +0.03, 95% CI [-0.29, +0.43]  => no clear difference
+
+==============================================================================================================
+ALL FOUR PATTERNS POOLED (more events = tighter intervals)
+==============================================================================================================
+[RS rank vs all assets]  vol-adj.: RS>=90 +0.66 ATR-units (n=3763) vs RS<90 +0.61 ATR-units (n=12141) -> diff +0.05, 95% CI [-0.29, +0.40]  => no clear difference
+[Breakout-day volume (entry at that day's close)]  vol-adj.: vol>=1.2x +0.59 ATR-units (n=4843) vs vol<1.2x +0.61 ATR-units (n=11068) -> diff -0.02, 95% CI [-0.24, +0.19]  => no clear difference
+[Base location vs MA21 (thirds)]  vol-adj.: ON +0.54 ATR-units (n=5326) vs AWAY +0.71 ATR-units (n=5332) -> diff -0.16, 95% CI [-0.40, +0.02]  => no clear difference
+[Near the 52-week high]  vol-adj.: near 52w high +0.61 ATR-units (n=15060) vs not near +0.66 ATR-units (n=851) -> diff -0.05, 95% CI [-0.29, +0.28]  => no clear difference
+
+==============================================================================================================
+DOES EACH PATTERN BEAT THE PLAIN CONTROL?  (vol-adjusted)
+==============================================================================================================
+VCP   : VCP +0.70 ATR-units (n=158) vs PLAIN +0.67 ATR-units (n=8516) -> diff +0.03, 95% CI [-0.67, +0.68]  => no clear difference
+LPS   : LPS +0.84 ATR-units (n=705) vs PLAIN +0.67 ATR-units (n=8516) -> diff +0.18, 95% CI [-0.12, +0.58]  => no clear difference
+STAIR : STAIR +0.63 ATR-units (n=8416) vs PLAIN +0.67 ATR-units (n=8516) -> diff -0.03, 95% CI [-0.21, +0.15]  => no clear difference
+DRIFT : DRIFT +0.58 ATR-units (n=6632) vs PLAIN +0.67 ATR-units (n=8516) -> diff -0.09, 95% CI [-0.31, +0.15]  => no clear difference
+
+How to read: believe a difference only if its interval excludes 0 AND it repeats across patterns / both profit measures.
+With ~20 comparisons, one or two 'CLEARLY better' by pure luck is expected. Survivorship bias flatters absolute returns.
