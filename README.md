@@ -619,10 +619,14 @@ The harness is intentionally small enough to be read end-to-end, so any of these
 ```
 
 *UPDATE*
-
-![image](/v4/RESULT_SWING.png)
 # VCP / LPS short-swing test: results and conclusions
  · 26 October 2026
+ 
+![image](/v4/RESULT_1_profit_by_split.png)
+![image2](/v4/RESULT_2_target_before_stop.png)
+![image3](/v4/RESULT_3_path_RS_strong_vs_weak.png)
+![image4](/v4/RESULT_SWING.png)
+
 
 ## Summary
 
@@ -675,9 +679,6 @@ The test did not cover:
 - entries inside a Darvas box
 - earnings or news context
 
-## Next step
-
-If you want to push further on VCP and LPS, the scripts can be changed to read a `tickers.txt` file with a few hundred more tickers, so these patterns get enough trades to test properly.
 
 
 
